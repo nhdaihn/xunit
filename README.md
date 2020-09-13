@@ -20,49 +20,175 @@ The [**Assert** ] section verifies that the action of the method under test beha
 ###### Ví dụ 
 ```csharp
 //Arrange test
-testClass objtest = new testClass();
-Boolean result;
 
 //Act test
-result = objtest.testFunction();
 
 //Assert test
-Assert.AreEqual(true, result);
 ```
 
 ##### xUnit Attributes
+**Basic tests using xUnit [**Fact**]**
 [**Facts**] are tests which are always true. They test invariant conditions.<br/>
 ```csharp
-[Facts]
-public void Add_SimpleValuesShouldCalculate()
+public class Calculator
 {
-	// Arrange
-	int x = 4;
-	int y =6;
-	int expected = 10;
-	
-	// Act
-	double actual = Calculator.Add(x, y);
+    public int Add(int value1, int value2)
+    {
+        return value1 + value2;
+    }
+}
 
-	// Assert
-	Assert.Equal(expected, actual);
+public class CalculatorTests
+{
+    [Fact]
+    public void Add_SimpleValuesShouldCalculate()
+    {
+        var calculator = new Calculator();
+
+        int value1 = 1;
+        int value2 = 2;
+
+        var result = calculator.Add(value1, value2);
+
+        Assert.Equal(3, result);
+    }
 }
 ```
+
+**Using the [**Theory**] attribute to create parameterised tests with [**InlineData**]<br/>**
 [**Theories**] are tests which are only true for a particular set of data.<br/>
+That data can be supplied in a number of ways, but the most common is with an [**InlineData**] attribute.
+Mỗi dòng InlineData sẽ tạo ra một phiên bản của medthod test đó, thứ tự các tham số ứng với thứ tự cấp cho medthod<br/>
+InlineData thường dùng để test với dữ liệu constants.
+```csharp
+public class CalculatorTests
+{
+	[Theory]
+	[InlineData(1, 2, 3)]
+	[InlineData(-4, -6, -10)]
+	[InlineData(-2, 2, 0)]
+	[InlineData(int.MinValue, -1, int.MaxValue)]
+	public void Add_SimpleValuesShouldCalculate(int value1, int value2, int expected)
+	{
+		var calculator = new Calculator();
+
+		var result = calculator.Add(value1, value2);
+
+		Assert.Equal(expected, result);
+	}
+}
+```
+**Using a dedicated data class with [**ClassData**]**
+Nếu dữ liệu không phải là constants thì chúng ta có thể dùng [**ClassData**] để truyền tham số(lấy đữ liệu từ một class khác).
 ```csharp
 [Theory]
-[InlineData(4,3,7)]
-[InlineData(21, 5.25, 26.25)]
-[InlineData(double.MaxValue, 5, double.MaxValue)]
-public void Add_SimpleValuesShouldCalculate(double x, double y, double expected)
+[ClassData(typeof(CalculatorTestData))]
+public void Add_TheoryClassData(int value1, int value2, int expected)
 {
-	// Arrange
+    var calculator = new Calculator();
 
-	// Act
-	double actual = Calculator.Add(x, y);
+    var result = calculator.Add(value1, value2);
 
-	// Assert
-	Assert.Equal(expected, actual);
+    Assert.Equal(expected, result);
+}
+```
+###### Khởi tạo CalculatorTestData
+```csharp
+public class CalculatorTestData : IEnumerable<object[]>
+{
+    public IEnumerator<object[]> GetEnumerator()
+    {
+        yield return new object[] { 1, 2, 3 };
+        yield return new object[] { -4, -6, -10 };
+        yield return new object[] { -2, 2, 0 };
+        yield return new object[] { int.MinValue, -1, int.MaxValue };
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+```
+**Using generator properties with the [**MemberData**] properties**
+Có thể sử dụng [**MemberData**] để truyền thám số giống như với [**ClassData**]
+####### Ví dụ lấy dữ liệu từ properties 
+```csharp
+public class CalculatorTests
+{
+    [Theory]
+    [MemberData(nameof(Data))]
+    public void Add_TheoryMemberDataProperty(int value1, int value2, int expected)
+    {
+        var calculator = new Calculator();
+
+        var result = calculator.Add(value1, value2);
+
+        Assert.Equal(expected, result);
+    }
+
+    public static IEnumerable<object[]> Data =>
+        new List<object[]>
+        {
+            new object[] { 1, 2, 3 },
+            new object[] { -4, -6, -10 },
+            new object[] { -2, 2, 0 },
+            new object[] { int.MinValue, -1, int.MaxValue },
+        };
+}
+```
+####### Ví dụ lấy dữ liệu từ method của test class 
+```csharp
+public class CalculatorTests
+{
+    [Theory]
+    [MemberData(nameof(GetData), parameters: 3)]
+    public void Add_TheoryMemberDataMethod(int value1, int value2, int expected)
+    {
+        var calculator = new Calculator();
+
+        var result = calculator.Add(value1, value2);
+
+        Assert.Equal(expected, result);
+    }
+
+    public static IEnumerable<object[]> GetData(int numTests)
+    {
+        var allData = new List<object[]>
+        {
+            new object[] { 1, 2, 3 },
+            new object[] { -4, -6, -10 },
+            new object[] { -2, 2, 0 },
+            new object[] { int.MinValue, -1, int.MaxValue },
+        };
+
+        return allData.Take(numTests);
+    }
+}
+```
+####### Ví dụ lấy dữ liệu từ properties của một class khác 
+```csharp
+public class CalculatorTests
+{
+    [Theory]
+    [MemberData(nameof(CalculatorData.Data), MemberType= typeof(CalculatorData))]
+    public void Add_TheoryMemberDataMethod(int value1, int value2, int expected)
+    {
+        var calculator = new Calculator();
+
+        var result = calculator.Add(value1, value2);
+
+        Assert.Equal(expected, result);
+    }
+}
+
+public class CalculatorData
+{
+    public static IEnumerable<object[]> Data =>
+        new List<object[]>
+        {
+            new object[] { 1, 2, 3 },
+            new object[] { -4, -6, -10 },
+            new object[] { -2, 2, 0 },
+            new object[] { int.MinValue, -1, int.MaxValue },
+        };
 }
 ```
 
