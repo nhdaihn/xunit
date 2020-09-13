@@ -146,7 +146,7 @@ var target = new ObservableStack<string>();
 target.Push("1");
 // act
 Assert.PropertyChanged(target, "Count", () => target.Clear());
-```csharp
+```
 
 PropertyChangedAsync: Kiểm tra property hoặc collection có được thay đổi bất đồng bộ
 
