@@ -18,6 +18,42 @@ The [**Arrange** ] section of a unit test method initializes objects and sets th
 The [**Act** ] section invokes the method under test with the arranged parameters.<br/>
 The [**Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
 
+##### xUnit Attributes
+[**Facts**] are tests which are always true. They test invariant conditions.<br/>
+```csharp
+[Facts]
+public void Add_SimpleValuesShouldCalculate()
+{
+	// Arrange
+	int x = 4;
+	int y =6;
+	int expected = 10;
+	
+	// Act
+	double actual = Calculator.Add(x, y);
+
+	// Assert
+	Assert.Equal(expected, actual);
+}
+```
+[**Theories**] are tests which are only true for a particular set of data.<br/>
+```csharp
+[Theory]
+[InlineData(4,3,7)]
+[InlineData(21, 5.25, 26.25)]
+[InlineData(double.MaxValue, 5, double.MaxValue)]
+public void Add_SimpleValuesShouldCalculate(double x, double y, double expected)
+{
+	// Arrange
+
+	// Act
+	double actual = Calculator.Add(x, y);
+
+	// Assert
+	Assert.Equal(expected, actual);
+}
+```
+
 ###### Ví dụ 
 ```csharp
 //Arrange test
