@@ -6,7 +6,7 @@ xUnit hay còn gọi là xUnit.net là một khung thử nghiệm đơn vị cho
 Những người tạo ra khung NUnit, James & Brad, cũng được ghi nhận vì đã viết khung thử nghiệm xUnit với mục đích duy nhất làxây dựng một khung thử nghiệm tốt hơn. Do đó, bạn sẽ tìm thấy rất nhiều điểm tương đồng giữa thử nghiệm NUnit và thử nghiệm xUnit. NUnit đóng vai trò là nền tảng cho rất nhiều tính năng mới được giới thiệu trong xUnit.(tham khảo xUnit.net)
 
 ##### Cài đạt xUnit trong Visual studio by nuget.
-![Create a class library.](https://imgur.com/gallery/yGGs83X)
+![Create a class library.](imgur.com/gallery/yGGs83X)
 ###### Install nuget **Xunit** vs **Xunit.runner.visualstudio**
 ![Install nuget.](/image/sample.png "Install nuget")
 
