@@ -1,34 +1,45 @@
+[Unit Test là gì?](#unitteslagi)
+[xUnit là gì?](#xunitlagi)
+[Cài đặt xUnit](#caidat)
+[AAA testing là gì?](#aaa)
+[xUnit Attributes](#attributes)
+- [Fact](#thetieude)
+- [Theory](#theory)
+- [ClassData](#classData)
+- [MemberData](#memberData)
+- [Trait](#trait)
+[Class Asserts trong xUnit](#asserts)
+[Quy tắc đặt tên cho medthod test](#quytacdatten)
+
+<a name="unitteslagi"></a>
 ##### Unit Test là gì?
 Unit Test là một loại kiểm thử phần mềm trong đó các đơn vị hay thành phần riêng lẻ của phần mềm được kiểm thử. Kiểm thử đơn vị được thực hiện trong quá trình phát triển ứng dụng. Mục tiêu của Kiểm thử đơn vị là cô lập một phần code và xác minhtính chính xác của đơn vị đó.
 
+<a name="xunitlagi"></a>
 ##### xUnit là gì?
 xUnit hay còn gọi là xUnit.net là một khung thử nghiệm đơn vị cho .NET. Nó là mã nguồn mở và hoàn toàn miễn phí để sử dụng. 
 Những người tạo ra khung NUnit, James & Brad, cũng được ghi nhận vì đã viết khung thử nghiệm xUnit với mục đích duy nhất làxây dựng một khung thử nghiệm tốt hơn. Do đó, bạn sẽ tìm thấy rất nhiều điểm tương đồng giữa thử nghiệm NUnit và thử nghiệm xUnit. NUnit đóng vai trò là nền tảng cho rất nhiều tính năng mới được giới thiệu trong xUnit.(tham khảo xUnit.net)
 
+<a name="caidat"></a>
 ##### Cài đặt xUnit trong Visual studio by nuget.
 ###### Create a class library
 ![create a class library](https://i.imgur.com/wWK83V6.png)
 ###### Install nuget **Xunit** vs **Xunit.runner.visualstudio**
 ![Install xUnit nuget](https://i.imgur.com/i0uuxqn.png)
 
+<a name="aaa"></a>
 ##### AAA testing là gì?
 AAA là một pattern phổ biến để viết unit test cho một method.
 ###### Trong đó:
-The [**Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
-The [**Act** ] section invokes the method under test with the arranged parameters.<br/>
-The [**Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
-###### Ví dụ 
-```csharp
-//Arrange test
+[**Arrange** ] Khởi tạo đối tượng, thiết đặt các giá trị trước khi kiểm tra.<br/>
+[**Act** ] gọi phương thức.<br/>
+[**Assert** ] xác minh kết quả của [**Act** ] có như mong đợi.<br/>
 
-//Act test
-
-//Assert test
-```
-
+<a name="attributes"></a>
 ##### xUnit Attributes
-**Basic tests using xUnit [**Fact**]**<br/>
-[**Facts**] are tests which are always true. They test invariant conditions.<br/>
+**Basic test trong xUnit với [**Fact**]**<br/>
+<a name="fact"></a>
+[**Facts**] testing với giá trị tự định nghĩa, không có parameters truyền vào.<br/>
 ```csharp
 public class Calculator
 {
@@ -54,10 +65,8 @@ public class CalculatorTests
     }
 }
 ```
-
-**Using the [**Theory**] attribute to create parameterised tests with [**InlineData**]<br/>**
-[**Theories**] are tests which are only true for a particular set of data.<br/>
-That data can be supplied in a number of ways, but the most common is with an [**InlineData**] attribute.
+<a name="theory"></a>
+**Sử dụng [**Theory**] attribute và truyền parameters với [**InlineData**]<br/>**
 Mỗi dòng InlineData sẽ tạo ra một phiên bản của medthod test đó, thứ tự các tham số ứng với thứ tự cấp cho medthod<br/>
 InlineData thường dùng để test với dữ liệu constants.
 ```csharp
@@ -78,7 +87,8 @@ public class CalculatorTests
 	}
 }
 ```
-**Using a dedicated data class with [**ClassData**]**<br/>
+<a name="classData"></a>
+**Truyền parameters với [**ClassData**]**<br/>
 Nếu dữ liệu không phải là constants thì chúng ta có thể dùng [**ClassData**] để truyền tham số(lấy đữ liệu từ một class khác).<br/>
 ```csharp
 [Theory]
@@ -106,7 +116,8 @@ public class CalculatorTestData : IEnumerable<object[]>
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 ```
-**Using generator properties with the [**MemberData**] properties**<br/>
+<a name="memberData"></a>
+**Truyền parameters với [**MemberData**] properties**<br/>
 Có thể sử dụng [**MemberData**] để truyền thám số giống như với [**ClassData**]<br/>
 ###### Ví dụ lấy dữ liệu từ properties 
 ```csharp
@@ -187,7 +198,7 @@ public class CalculatorData
         };
 }
 ```
-
+<a name="trait"></a>
 ##### [Trait]
 Hiểu đơn giản [**Trait**] dùng để đánh chỉ mục test, phân loại test.
 ```csharp
@@ -218,8 +229,8 @@ Khi buil project test và mở Test Explorer cột [**Trait**] hiển thị Name
 
 
 
-
-##### Tại sao Class Asserts?
+<a name="asserts"></a>
+##### Class Asserts trong xUnit?
 Trong xUnit class khá quan trọng cần quan tâm là Xunit.Assert. Class này cho phép so sánh các giá trị, chuỗi, tập hợp, ngoại lệ và sự kiện.<br/>
 
 **All** : Kiểm tra xem tất cả item trong collection có thực hiện đúng action hay không.<br/>
@@ -357,6 +368,7 @@ Assert.Throws<Exception>(() => service.GetData());
 **RecordException**:<br/>
 **RecordExceptionAsync**:<br/>
 
+<a name="quytacdatten"></a>
 ##### Quy tắc đặt tên cho medthod test
 
 Có nhiều quy tắc đặt tên cho method unit test <br/>
