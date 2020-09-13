@@ -109,7 +109,7 @@ public class CalculatorTestData : IEnumerable<object[]>
 ```
 **Using generator properties with the [**MemberData**] properties**<br/>
 Có thể sử dụng [**MemberData**] để truyền thám số giống như với [**ClassData**]<br/>
-####### Ví dụ lấy dữ liệu từ properties 
+###### Ví dụ lấy dữ liệu từ properties 
 ```csharp
 public class CalculatorTests
 {
@@ -134,7 +134,7 @@ public class CalculatorTests
         };
 }
 ```
-####### Ví dụ lấy dữ liệu từ method của test class 
+###### Ví dụ lấy dữ liệu từ method của test class 
 ```csharp
 public class CalculatorTests
 {
@@ -163,7 +163,7 @@ public class CalculatorTests
     }
 }
 ```
-####### Ví dụ lấy dữ liệu từ properties của một class khác 
+###### Ví dụ lấy dữ liệu từ properties của một class khác 
 ```csharp
 public class CalculatorTests
 {
