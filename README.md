@@ -8,11 +8,11 @@ Những người tạo ra khung NUnit, James & Brad, cũng được ghi nhận v
 ##### Cài đạt xUnit trong Visual studio by nuget
 
 ##### AAA testing là gì?
-AAA là một pattern phổ biến để viết unit test cho một method.
+AAA là một pattern phổ biến để viết unit test cho một method.<br/>
 ###### Trong đó:
-The [** Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.
-The [** Act** ] section invokes the method under test with the arranged parameters.
-The [** Assert** ] section verifies that the action of the method under test behaves as expected.
+The [** Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
+The [** Act** ] section invokes the method under test with the arranged parameters.<br/>
+The [** Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
 
 ###### Ví dụ 
 //Arrange test
@@ -26,10 +26,12 @@ result = objtest.testFunction();
 Assert.AreEqual(true, result);
 
 ##### Tại sao Class Asserts?
-Trong xUnit class khá quan trọng cần quan tâm là Xunit.Assert. Class này cho phép so sánh các giá trị, chuỗi, tập hợp, ngoại lệ và sự kiện.
+Trong xUnit class khá quan trọng cần quan tâm là Xunit.Assert. Class này cho phép so sánh các giá trị, chuỗi, tập hợp, ngoại lệ và sự kiện.<br/>
 
 **All** : Kiểm tra xem tất cả item trong collection có thực hiện đúng action hay không.<br/>
+```csharp
 Assert.All(result, item => Assert.Contains("John", item.Name));
+```
 
 **Collection** : Kiểm tra xem từng phần tử trong collection có thực hiện đúng hành động tương ứng hay không(Số lượng kiểm tra phải bằng với số phần tử trong collection(phức tạp hơn Assert.All)).<br/>
 ```csharp
@@ -167,7 +169,7 @@ Có nhiều quy tắc đặt tên cho method unit test <br/>
 *  Ở đây đang tham khảo* (https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html)<br/>
 ```csharp
 [MethodName_StateUnderTest_ExpectedBehavior]<br/>
-```csharp
+```
 **MethodName**: Tên method<br/>
 **StateUnderTest**: Trạng thái kiểm tra<br/>
 **ExpectedBehavior**: Kết quả mong muốn<br/>
