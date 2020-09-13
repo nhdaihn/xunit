@@ -17,6 +17,18 @@ AAA là một pattern phổ biến để viết unit test cho một method.
 The [**Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
 The [**Act** ] section invokes the method under test with the arranged parameters.<br/>
 The [**Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
+###### Ví dụ 
+```csharp
+//Arrange test
+testClass objtest = new testClass();
+Boolean result;
+
+//Act test
+result = objtest.testFunction();
+
+//Assert test
+Assert.AreEqual(true, result);
+```
 
 ##### xUnit Attributes
 [**Facts**] are tests which are always true. They test invariant conditions.<br/>
@@ -52,19 +64,6 @@ public void Add_SimpleValuesShouldCalculate(double x, double y, double expected)
 	// Assert
 	Assert.Equal(expected, actual);
 }
-```
-
-###### Ví dụ 
-```csharp
-//Arrange test
-testClass objtest = new testClass();
-Boolean result;
-
-//Act test
-result = objtest.testFunction();
-
-//Assert test
-Assert.AreEqual(true, result);
 ```
 
 ##### Tại sao Class Asserts?
