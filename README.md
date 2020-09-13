@@ -101,7 +101,6 @@ public class CalculatorTestData : IEnumerable<object[]>
         yield return new object[] { 1, 2, 3 };
         yield return new object[] { -4, -6, -10 };
         yield return new object[] { -2, 2, 0 };
-        yield return new object[] { int.MinValue, -1, int.MaxValue };
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -129,8 +128,7 @@ public class CalculatorTests
         {
             new object[] { 1, 2, 3 },
             new object[] { -4, -6, -10 },
-            new object[] { -2, 2, 0 },
-            new object[] { int.MinValue, -1, int.MaxValue },
+            new object[] { -2, 2, 0 }
         };
 }
 ```
@@ -155,8 +153,7 @@ public class CalculatorTests
         {
             new object[] { 1, 2, 3 },
             new object[] { -4, -6, -10 },
-            new object[] { -2, 2, 0 },
-            new object[] { int.MinValue, -1, int.MaxValue },
+            new object[] { -2, 2, 0 }
         };
 
         return allData.Take(numTests);
@@ -186,8 +183,7 @@ public class CalculatorData
         {
             new object[] { 1, 2, 3 },
             new object[] { -4, -6, -10 },
-            new object[] { -2, 2, 0 },
-            new object[] { int.MinValue, -1, int.MaxValue },
+            new object[] { -2, 2, 0 }
         };
 }
 ```
@@ -199,7 +195,6 @@ Hiểu đơn giản [**Trait**] dùng để đánh chỉ mục test, phân loạ
 [InlineData(1, 2, 3)]
 [InlineData(-4, -6, -10)]
 [InlineData(-2, 2, 0)]
-[InlineData(int.MinValue, -1, int.MaxValue)]
 [Trait("Service", " Calculator")]
 public void Add_SimpleValuesShouldCalculate(int value1, int value2, int expected)
 {
