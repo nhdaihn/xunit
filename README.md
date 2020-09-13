@@ -192,6 +192,38 @@ public class CalculatorData
 }
 ```
 
+##### [Trait]
+Hiểu đơn giản [**Trait**] dùng để đánh chỉ mục test, phân loại test.
+```csharp
+[Theory]
+[InlineData(1, 2, 3)]
+[InlineData(-4, -6, -10)]
+[InlineData(-2, 2, 0)]
+[InlineData(int.MinValue, -1, int.MaxValue)]
+[Trait("Service", " Calculator")]
+public void Add_SimpleValuesShouldCalculate(int value1, int value2, int expected)
+{
+	var calculator = new Calculator();
+
+	var result = calculator.Add(value1, value2);
+
+	Assert.Equal(expected, result);
+}
+```
+Khi buil project test và mở Test Explorer cột [**Trait**] hiển thị Name và Value của Trait medthod test. Có thể filter medthod test theo [**Trait**]
+![create a class library](https://i.imgur.com/PxgbhP6.png)	
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Tại sao Class Asserts?
 Trong xUnit class khá quan trọng cần quan tâm là Xunit.Assert. Class này cho phép so sánh các giá trị, chuỗi, tập hợp, ngoại lệ và sự kiện.<br/>
 
