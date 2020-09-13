@@ -5,19 +5,21 @@ Unit Test là một loại kiểm thử phần mềm trong đó các đơn vị 
 xUnit hay còn gọi là xUnit.net là một khung thử nghiệm đơn vị cho .NET. Nó là mã nguồn mở và hoàn toàn miễn phí để sử dụng. 
 Những người tạo ra khung NUnit, James & Brad, cũng được ghi nhận vì đã viết khung thử nghiệm xUnit với mục đích duy nhất làxây dựng một khung thử nghiệm tốt hơn. Do đó, bạn sẽ tìm thấy rất nhiều điểm tương đồng giữa thử nghiệm NUnit và thử nghiệm xUnit. NUnit đóng vai trò là nền tảng cho rất nhiều tính năng mới được giới thiệu trong xUnit.(tham khảo xUnit.net)
 
-##### Cài đạt xUnit trong Visual studio by nuget.
+##### Cài đặt xUnit trong Visual studio by nuget.
+###### Create a class library
 ![create a class library](https://i.imgur.com/wWK83V6.png)
 ###### Install nuget **Xunit** vs **Xunit.runner.visualstudio**
 ![Install xUnit nuget](https://i.imgur.com/i0uuxqn.png)
 
 ##### AAA testing là gì?
-AAA là một pattern phổ biến để viết unit test cho một method.<br/>
+AAA là một pattern phổ biến để viết unit test cho một method.
 ###### Trong đó:
 The [**Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
 The [**Act** ] section invokes the method under test with the arranged parameters.<br/>
 The [**Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
 
 ###### Ví dụ 
+```csharp
 //Arrange test
 testClass objtest = new testClass();
 Boolean result;
@@ -27,6 +29,7 @@ result = objtest.testFunction();
 
 //Assert test
 Assert.AreEqual(true, result);
+```
 
 ##### Tại sao Class Asserts?
 Trong xUnit class khá quan trọng cần quan tâm là Xunit.Assert. Class này cho phép so sánh các giá trị, chuỗi, tập hợp, ngoại lệ và sự kiện.<br/>
@@ -169,9 +172,9 @@ Assert.Throws<Exception>(() => service.GetData());
 ##### Quy tắc đặt tên cho medthod test
 
 Có nhiều quy tắc đặt tên cho method unit test <br/>
-*  Ở đây đang tham khảo* (https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html)<br/>
+*  Tham khảo* (https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html)<br/>
 ```csharp
-[MethodName_StateUnderTest_ExpectedBehavior]<br/>
+[MethodName_StateUnderTest_ExpectedBehavior]
 ```
 **MethodName**: Tên method<br/>
 **StateUnderTest**: Trạng thái kiểm tra<br/>
@@ -183,6 +186,5 @@ Ví dụ muốn test method Add với đầu vào là hai số nguyên dương b
 [Fact]
 public void Add_AnyNumberic_BiggerThan100()
 {
-	//
 }
 ```
