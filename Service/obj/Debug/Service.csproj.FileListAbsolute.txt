@@ -1,0 +1,6 @@
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\bin\Debug\Service.dll
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\bin\Debug\Service.pdb
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\obj\Debug\Service.csprojAssemblyReference.cache
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\obj\Debug\Service.dll
+C:\Users\nhdai19\Desktop\nhdaiXUnitTest\TestingDemo\Service\obj\Debug\Service.pdb
