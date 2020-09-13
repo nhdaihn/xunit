@@ -5,14 +5,17 @@ Unit Test là một loại kiểm thử phần mềm trong đó các đơn vị 
 xUnit hay còn gọi là xUnit.net là một khung thử nghiệm đơn vị cho .NET. Nó là mã nguồn mở và hoàn toàn miễn phí để sử dụng. 
 Những người tạo ra khung NUnit, James & Brad, cũng được ghi nhận vì đã viết khung thử nghiệm xUnit với mục đích duy nhất làxây dựng một khung thử nghiệm tốt hơn. Do đó, bạn sẽ tìm thấy rất nhiều điểm tương đồng giữa thử nghiệm NUnit và thử nghiệm xUnit. NUnit đóng vai trò là nền tảng cho rất nhiều tính năng mới được giới thiệu trong xUnit.(tham khảo xUnit.net)
 
-##### Cài đạt xUnit trong Visual studio by nuget
+##### Cài đạt xUnit trong Visual studio by nuget.
+![Create a class library.](https://imgur.com/a/yGGs83X "Create a class library")
+###### Install nuget **Xunit** vs **Xunit.runner.visualstudio**
+![Install nuget.](/image/sample.png "Install nuget")
 
 ##### AAA testing là gì?
 AAA là một pattern phổ biến để viết unit test cho một method.<br/>
 ###### Trong đó:
-The [** Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
-The [** Act** ] section invokes the method under test with the arranged parameters.<br/>
-The [** Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
+The [**Arrange** ] section of a unit test method initializes objects and sets the value of the data that is passed to the method under test.<br/>
+The [**Act** ] section invokes the method under test with the arranged parameters.<br/>
+The [**Assert** ] section verifies that the action of the method under test behaves as expected.<br/>
 
 ###### Ví dụ 
 //Arrange test
