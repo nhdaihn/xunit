@@ -27,7 +27,7 @@ The [**Assert** ] section verifies that the action of the method under test beha
 ```
 
 ##### xUnit Attributes
-**Basic tests using xUnit [**Fact**]**
+**Basic tests using xUnit [**Fact**]**<br/>
 [**Facts**] are tests which are always true. They test invariant conditions.<br/>
 ```csharp
 public class Calculator
@@ -78,8 +78,8 @@ public class CalculatorTests
 	}
 }
 ```
-**Using a dedicated data class with [**ClassData**]**
-Nếu dữ liệu không phải là constants thì chúng ta có thể dùng [**ClassData**] để truyền tham số(lấy đữ liệu từ một class khác).
+**Using a dedicated data class with [**ClassData**]**<br/>
+Nếu dữ liệu không phải là constants thì chúng ta có thể dùng [**ClassData**] để truyền tham số(lấy đữ liệu từ một class khác).<br/>
 ```csharp
 [Theory]
 [ClassData(typeof(CalculatorTestData))]
@@ -107,8 +107,8 @@ public class CalculatorTestData : IEnumerable<object[]>
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 ```
-**Using generator properties with the [**MemberData**] properties**
-Có thể sử dụng [**MemberData**] để truyền thám số giống như với [**ClassData**]
+**Using generator properties with the [**MemberData**] properties**<br/>
+Có thể sử dụng [**MemberData**] để truyền thám số giống như với [**ClassData**]<br/>
 ####### Ví dụ lấy dữ liệu từ properties 
 ```csharp
 public class CalculatorTests
